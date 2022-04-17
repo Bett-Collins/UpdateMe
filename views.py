@@ -52,6 +52,27 @@ def loginpage(request):
 
       
     return render(request,'registration/login.html')
+def logoutuser(request):
+    
+    return redirect(reverse('login'))
+@login_required(login_url='login')
+def new_business(request):
+    current_user = request.user
 
+    if request.method =='POST':
+        form = BusinessForm(request.POST,request.FILES)
+        if form.is_valid():
+            business = form.save(commit=False)
+           
 
+            business.save()
+    else:
+        form = BusinessForm()
+
+    return render(request,'business.html',{"form":form})
+
+def profile(request):
+    users=User.objects.all()
+    context={'users':users}
+    return render(request,'profile.html',context)
    
