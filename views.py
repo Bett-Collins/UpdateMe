@@ -1,4 +1,10 @@
-from django.shortcuts import render
+from updateme.models import Business, NeighbourHood, User
+from django.shortcuts import render,redirect
+from .forms import CreateUserForm,BusinessForm
+from django.contrib import messages
+from django.contrib.auth import authenticate,login,logout as dj_login
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -14,7 +20,7 @@ def index(request):
     neighbourhoods=NeighbourHood.objects.all()
 
 
-context={'businesses':businesses,'users':users,'neighbourhoods':neighbourhoods}
+    context={'businesses':businesses,'users':users,'neighbourhoods':neighbourhoods}
     return render(request,'index.html',context)
 
 def registeruser(request):
@@ -33,6 +39,7 @@ def registeruser(request):
                         }
 
     return render(request,'registration/register.html',context)
+
 def loginpage(request):
     if request.user.is_authenticated:
 
@@ -52,6 +59,7 @@ def loginpage(request):
 
       
     return render(request,'registration/login.html')
+
 def logoutuser(request):
     
     return redirect(reverse('login'))
@@ -75,4 +83,3 @@ def profile(request):
     users=User.objects.all()
     context={'users':users}
     return render(request,'profile.html',context)
-   

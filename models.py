@@ -1,6 +1,5 @@
 from django.db import models
-from django.db import models
-
+from django.db.models.deletion import CASCADE
 
 # Create your models here.
 
@@ -15,6 +14,7 @@ class Admin(models.Model):
 
     def delete_admin(self):
         self.delete()
+
 
 
 class NeighbourHood(models.Model):
@@ -34,6 +34,8 @@ class NeighbourHood(models.Model):
 
     def update_neighbourhood(self):
         pass
+
+
 class User(models.Model):
     name=models.CharField(max_length=100,null=True)
     id=models.IntegerField(primary_key=True)
@@ -48,7 +50,8 @@ class User(models.Model):
 
     def delete_user(self):
         self.delete()
-lass Business(models.Model):
+
+class Business(models.Model):
     name=models.CharField(max_length=100)
     email=models.EmailField(max_length=50,null=True)
     user=models.ForeignKey(User, on_delete=CASCADE,null=True)
@@ -69,3 +72,5 @@ lass Business(models.Model):
     def update_business(self):
         pass
         
+
+  
