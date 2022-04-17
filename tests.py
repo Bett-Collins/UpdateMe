@@ -29,3 +29,13 @@ class BusinessTestClass(TestCase):
 
         else:
             return(search_term)     
+
+   def test_update_business(self):
+        business=Business.objects.all()
+        new_bus=Business.update_business(self)
+        expected_business=f'{new_bus}'
+        self.assertTrue(expected_business,'new_bus')
+
+class NeighbourhoodTestClass(TestCase):
+    #setup method
+    def setUp(self):
