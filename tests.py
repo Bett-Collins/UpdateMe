@@ -39,3 +39,14 @@ class BusinessTestClass(TestCase):
 class NeighbourhoodTestClass(TestCase):
     #setup method
     def setUp(self):
+        
+        self.neighbourhood=NeighbourHood(name='sucess',location="kericho")
+
+    #Testing Instance
+    def test_instance(self):
+        self.assertTrue(isinstance(self.neighbourhood,NeighbourHood))
+
+    def test_create_neighbourhood(self):
+        new_neighbourhood=NeighbourHood.create_neighbourhood(self)
+        neighbourhood1=f'{new_neighbourhood}'
+        self.assertTrue(neighbourhood1,'new_neighbourhood')
