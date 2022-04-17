@@ -34,3 +34,17 @@ class NeighbourHood(models.Model):
 
     def update_neighbourhood(self):
         pass
+class User(models.Model):
+    name=models.CharField(max_length=100,null=True)
+    id=models.IntegerField(primary_key=True)
+    email=models.EmailField(max_length=50,null=True)
+    neighbourhood=models.ForeignKey(NeighbourHood, on_delete=CASCADE,null=True)
+    
+    def __str__(self):
+        return self.name
+
+    def save_user(self):
+        self.save()
+
+    def delete_user(self):
+        self.delete()
