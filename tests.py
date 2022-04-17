@@ -19,3 +19,13 @@ class BusinessTestClass(TestCase):
         business_record=Business.objects.all()
         self.business.delete_business()
         self.assertTrue(len(business_record)==0)
+        
+     def test_find_business(self):
+        business=Business.objects.all()
+        search_term='cereals'
+        db_term=search_term
+        if db_term !=search_term:
+            return('no match')
+
+        else:
+            return(search_term)     
