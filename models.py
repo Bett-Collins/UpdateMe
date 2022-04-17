@@ -48,3 +48,24 @@ class User(models.Model):
 
     def delete_user(self):
         self.delete()
+lass Business(models.Model):
+    name=models.CharField(max_length=100)
+    email=models.EmailField(max_length=50,null=True)
+    user=models.ForeignKey(User, on_delete=CASCADE,null=True)
+    neighbourhood=models.ForeignKey(NeighbourHood, on_delete=CASCADE,null=True)
+
+    def __str__(self):
+        return self.name
+
+    def create_business(self):
+        pass
+
+    def delete_business(self):
+        self.delete()
+
+    def search_business(self):
+        pass
+
+    def update_business(self):
+        pass
+        
