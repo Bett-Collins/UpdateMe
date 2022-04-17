@@ -14,4 +14,25 @@ def index(request):
     neighbourhoods=NeighbourHood.objects.all()
 
 
+context={'businesses':businesses,'users':users,'neighbourhoods':neighbourhoods}
+    return render(request,'index.html',context)
+
+def registeruser(request):
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Account Created Successfully!. Check out our Email later :)')
+
+            return redirect('login')
+    else:
+        form = CreateUserForm
+    context = {
+            
+            'form':form,
+                        }
+
+    return render(request,'registration/register.html',context)
+
+
    
